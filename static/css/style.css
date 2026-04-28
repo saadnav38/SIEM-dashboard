@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #21262d;
+    margin-bottom: 24px;
+}
+
+header h1 {
+    color: #58a6ff;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#last-updated {
+    color: #8b949e;
+    font-size: 12px;
+}
+
+button {
+    background: #1f6feb;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+button:hover {
+    background: #388bfd;
+}
+
+.stat-cards {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+}
+
+.card.critical {
+    border-color: #f85149;
+}
+
+.card.high {
+    border-color: #d29922;
+}
+
+.card.medium {
+    border-color: #388bfd;
+}
+
+.card-label {
+    color: #8b949e;
+    font-size: 12px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-value {
+    font-size: 32px;
+    color: #c9d1d9;
+}
+
+.filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+select, input {
+    background: #161b22;
+    border: 1px solid #21262d;
+    color: #c9d1d9;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.charts-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.chart-box {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-box h2 {
+    align-self: flex-start;
+    color: #8b949e;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+}
+
+.chart-center {
+    position: relative;
+    width: 100%;
+    flex: 1;
+}
+
+.section {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.section h2 {
+    color: #8b949e;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    color: #8b949e;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-bottom: 1px solid #21262d;
+}
+
+td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #21262d;
+    font-size: 13px;
+}
+
+tr:hover {
+    background: #1c2128;
+    cursor: pointer;
+}
+
+.badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.badge.critical { background: #3d1a1a; color: #f85149; }
+.badge.high { background: #2d2008; color: #d29922; }
+.badge.medium { background: #0d2045; color: #388bfd; }
+.badge.low { background: #1a2d1a; color: #3fb950; }
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 24px;
+    width: 600px;
+    max-width: 90%;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #21262d;
+    padding: 4px 10px;
+}
+
+.modal-body-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 12px;
+}
+
+.modal-body-label {
+    color: #8b949e;
+    font-size: 12px;
+    width: 130px;
+    flex-shrink: 0;
+}
+
+.modal-body-value {
+    color: #c9d1d9;
+    font-size: 13px;
+    word-break: break-all;
+}
+
+#severity-chart {
+    max-height: 350px;
+}

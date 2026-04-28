@@ -1,0 +1,5 @@
+siem.db
+logs/
+__pycache__/
+*.pyc
+config.json

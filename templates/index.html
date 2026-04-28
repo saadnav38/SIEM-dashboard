@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIEM Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SIEM Dashboard</h1>
+            <div class="header-right">
+                <span style="color:#8b949e;font-size:12px;">Signed in as <strong style="color:#58a6ff;">{{ username }}</strong></span>
+                <span id="last-updated">Last updated: --</span>
+                <button id="ingest-btn" onclick="triggerIngest()">Run Ingestion</button>
+                <a href="/logout"><button>Logout</button></a>
+            </div>
+        </header>
+
+        <div class="stat-cards">
+            <div class="card">
+                <div class="card-label">Total Events</div>
+                <div class="card-value" id="total-events">--</div>
+            </div>
+            <div class="card critical">
+                <div class="card-label">Critical</div>
+                <div class="card-value" id="critical-count">--</div>
+            </div>
+            <div class="card high">
+                <div class="card-label">High</div>
+                <div class="card-value" id="high-count">--</div>
+            </div>
+            <div class="card medium">
+                <div class="card-label">Medium</div>
+                <div class="card-value" id="medium-count">--</div>
+            </div>
+            <div class="card">
+                <div class="card-label">Total Alerts</div>
+                <div class="card-value" id="total-alerts">--</div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <select id="filter-severity" onchange="loadEvents()">
+                <option value="">All Severities</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <select id="filter-type" onchange="loadEvents()">
+                <option value="">All Event Types</option>
+                <option value="ids_alert">IDS Alert</option>
+                <option value="auth_failure">Auth Failure</option>
+                <option value="auth_success">Auth Success</option>
+                <option value="firewall_deny">Firewall Deny</option>
+                <option value="firewall_allow">Firewall Allow</option>
+            </select>
+            <select id="filter-hours" onchange="loadAll()">
+                <option value="1">Last 1 Hour</option>
+                <option value="24" selected>Last 24 Hours</option>
+                <option value="168">Last 7 Days</option>
+            </select>
+            <input type="text" id="filter-ip" placeholder="Filter by IP..." onchange="loadEvents()">
+        </div>
+
+        <div class="charts-row">
+            <div class="chart-box">
+                <h2>Events by Severity</h2>
+                <canvas id="severity-chart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h2>Events by Type</h2>
+                <div style="position:relative;width:100%;height:300px;display:flex;align-items:center;justify-content:center;">
+                    <canvas id="type-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Event Timeline</h2>
+            <canvas id="timeline-chart"></canvas>
+        </div>
+        
+        <div class="section">
+            <h2>Top Source IPs</h2>
+            <table id="top-ips-table">
+                <thead>
+                    <tr>
+                        <th>Source IP</th>
+                        <th>Event Count</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="top-ips-body"></tbody>
+            </table>
+        </div>
+        <div class="section">
+            <h2>Active Alerts</h2>
+            <table id="alerts-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Rule</th>
+                        <th>Severity</th>
+                        <th>Source IP</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id="alerts-body"></tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Event Feed</h2>
+            <div style="display:flex; gap:10px; margin-bottom:16px;">
+                <button onclick="exportEvents('csv')">Export CSV</button>
+                <button onclick="exportEvents('json')">Export JSON</button>
+            </div>
+
+        <div id="modal" class="modal hidden">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal()">X</button>
+                <h2>Event Detail</h2>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{
+    "rules": [
+        {
+            "id": "rule_001",
+            "name": "Brute Force Detected",
+            "description": "Multiple failed login attempts from the same IP within a time window",
+            "enabled": true,
+            "event_type": "auth_failure",
+            "threshold": 5,
+            "window_minutes": 10,
+            "severity": "high",
+            "group_by": "source_ip"
+        },
+        {
+            "id": "rule_002",
+            "name": "Brute Force Followed by Success",
+            "description": "Failed logins followed by successful login from same IP indicating possible account compromise",
+            "enabled": true,
+            "event_type": "auth_failure",
+            "success_event_type": "auth_success",
+            "threshold": 1,
+            "window_minutes": 10,
+            "severity": "critical",
+            "group_by": "source_ip"
+        },
+        {
+            "id": "rule_003",
+            "name": "Port Scan Detected",
+            "description": "Multiple IDS alerts from the same IP within a short time window indicating scanning activity",
+            "enabled": true,
+            "event_type": "ids_alert",
+            "threshold": 3,
+            "window_minutes": 5,
+            "severity": "high",
+            "group_by": "source_ip"
+        },
+        {
+            "id": "rule_004",
+            "name": "Repeated Firewall Denies",
+            "description": "Multiple firewall denies from the same IP indicating persistent connection attempts",
+            "enabled": true,
+            "event_type": "firewall_deny",
+            "threshold": 10,
+            "window_minutes": 15,
+            "severity": "medium",
+            "group_by": "source_ip"
+        },
+        {
+            "id": "rule_005",
+            "name": "High Volume Network Flow",
+            "description": "Unusually high number of network flows from a single IP indicating possible data exfiltration or scanning",
+            "enabled": false,
+            "event_type": "network_flow",
+            "threshold": 100,
+            "window_minutes": 5,
+            "severity": "high",
+            "group_by": "source_ip"
+        }
+    ]
+}
