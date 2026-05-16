@@ -147,4 +147,4 @@ Critical and high severity alerts will automatically post to your Slack channel.
 
 ## Author
 
-Saad Nav | [LinkedIn](https://linkedin.com/in/saadnav) | [GitHub](https://github.com/saadnvv)
+Saad Nav | [LinkedIn](https://linkedin.com/in/saadnav) | [GitHub](https://github.com/saadnav38)
