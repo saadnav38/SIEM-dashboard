@@ -5,13 +5,16 @@ from database import get_connection, init_db
 from correlator import run_all_rules
 from ingestor import generate_sample_logs
 from datetime import datetime, timedelta
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'siem-secret-key-change-in-production'
+app.secret_key = os.environ.get('SECRET_KEY', 'changeme')
 
 USERS = {
-    'analyst': generate_password_hash('siem1234'),
-    'admin': generate_password_hash('admin5678')
+    'analyst': generate_password_hash(os.environ.get('ANALYST_PASSWORD', 'changeme')),
+    'admin': generate_password_hash(os.environ.get('ADMIN_PASSWORD', 'changeme'))
 }
 
 def login_required(f):

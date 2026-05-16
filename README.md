@@ -68,7 +68,7 @@ git clone https://github.com/saadnvv/SIEM-dashboard.git
 cd SIEM-dashboard
 
 # Install dependencies
-pip install flask werkzeug
+pip install flask werkzeug python-dotenv
 
 # Initialize the database
 python database.py
@@ -86,8 +86,7 @@ python app.py
 Open your browser to `http://127.0.0.1:5000`
 
 **Default credentials:**
-- Username: `analyst` Password: `siem1234`
-- Username: `admin` Password: `admin5678`
+**Credentials are set via environment variables. Copy `.env.example` to `.env` and set your own passwords before running.**
 
 ## Slack Alerting
 
